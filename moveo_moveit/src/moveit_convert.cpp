@@ -9,7 +9,7 @@ int stepsPerRevolution[6] = {32800,18000,72000,3280,14400,0};  // microsteps/rev
 int joint_status = 0;
 double cur_angle[6];
 int joint_step[6];
-double prev_angle[6] = {0,0,0,0,0,0}; 
+double prev_angle[6] = {0,0,0,0,0,0};
 double init_angle[6] = {0,0,0,0,0,0};
 double total_steps[6] = {0,0,0,0,0,0};
 int count = 0;
@@ -24,7 +24,7 @@ int count = 0;
 //   return steps;
 // }
 
-//command callback (for position) function 
+//command callback (for position) function
 void cmd_cb(const sensor_msgs::JointState& cmd_arm)
 {
   if (count==0){
@@ -47,7 +47,7 @@ void cmd_cb(const sensor_msgs::JointState& cmd_arm)
   // ros::Subscriber sub = nh.subscribe("/move_group/fake_controller_joint_states",1000,cmd_cb);
   // ros::Publisher pub = nh.advertise<moveo_moveit::ArmJointState>("joint_steps",50);
   ROS_INFO_STREAM("Received /move_group/fake_controller_joint_states");
-    
+
   // arm_steps.position1 = (cmd_arm.position[0]*stepsPerRevolution[0]/M_PI+0.5)-prev_angle[0];
   // arm_steps.position2 = (cmd_arm.position[1]*stepsPerRevolution[1]/M_PI+0.5)-prev_angle[1];
   // arm_steps.position3 = (cmd_arm.position[2]*stepsPerRevolution[2]/M_PI+0.5)-prev_angle[2];
@@ -96,7 +96,7 @@ void cmd_cb(const sensor_msgs::JointState& cmd_arm)
 
   ROS_INFO_STREAM("Done conversion to /joint_steps");
   joint_status = 1;
-  count=1;
+  count = 1;
 }
 
 int main(int argc, char **argv)
@@ -106,7 +106,7 @@ int main(int argc, char **argv)
   ROS_INFO_STREAM("In main function");
   ros::Subscriber sub = nh.subscribe("/move_group/fake_controller_joint_states",1000,cmd_cb);
   ros::Publisher pub = nh.advertise<moveo_moveit::ArmJointState>("joint_steps",50);
-  
+
   ros::Rate loop_rate(20);
 
   while (ros::ok())
@@ -119,7 +119,7 @@ int main(int argc, char **argv)
       ROS_INFO_STREAM("Published to /joint_steps");
     }
     ros::spinOnce();
-    loop_rate.sleep();  
+    loop_rate.sleep();
   }
 
   //ros::spin();

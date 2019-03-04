@@ -1,5 +1,16 @@
-import os
+import sys
+
+ros_path = '/opt/ros/kinetic/lib/python2.7/dist-packages'
+
+if ros_path in sys.path:
+
+    sys.path.remove(ros_path)
+
 import cv2
+
+sys.path.append('/opt/ros/kinetic/lib/python2.7/dist-packages')
+
+import os
 import time
 import argparse
 import numpy as np
@@ -119,11 +130,11 @@ def publish_detected_object():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-src', '--source', dest='video_source', type=int,
-                        default=-1, help='Device index of the camera.')
+                        default=0, help='Device index of the camera.')
     parser.add_argument('-wd', '--width', dest='width', type=int,
-                        default=1280, help='Width of the frames in the video stream.')
+                        default=720, help='Width of the frames in the video stream.')
     parser.add_argument('-ht', '--height', dest='height', type=int,
-                        default=720, help='Height of the frames in the video stream.')
+                        default=480, help='Height of the frames in the video stream.')
     args = parser.parse_args()
 
     input_q = Queue(2)  # fps is better if queue is higher but then more lags

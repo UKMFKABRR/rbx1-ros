@@ -8,6 +8,7 @@ Python 2 and Python 3 in the same ROS application.
 In my case, this receives real-time object detection info from a script in Python 3 and publishes to a rostopic.
 
 Author: Jesse Weisberg
+Modifier: Munkhtulga Byambaa
 '''
 import rospy
 from std_msgs.msg import String
@@ -21,20 +22,20 @@ from espeak import espeak
 from moveo_moveit.msg import ArmJointState
 
 fixated_object_label = None
-gripper = {'open': 0, 'banana': 70, 'apple': 50}
+gripper = {'open': 80, 'banana': 155, 'cup': 150}
 upright = [0, 0, 0, 0, 0, 0]
 
-#predefined movements for pick and place of an apple and banana
-apple_pick = [0, -2243, -23410, 14, -800, gripper['apple']]
-apple_move = [0, -1113, -17410, 14, -3300, gripper['apple']]
-apple_place = [-4600, -2400, -18410, 91, -800, gripper['open']]
+#predefined movements for pick and place of an cup and banana
+cup_pick = [0, -2443, -20410, 14, -800, gripper['cup']]
+cup_move = [0, -1113, -17410, 14, -3300, gripper['cup']]
+cup_place = [-4600, -2400, -18410, -91, -800, gripper['open']]
 
-banana_pick = [0, -2243, -24410, 14, -400, gripper['banana']]
+banana_pick = [0, -2443, -24410, 14, -400, gripper['banana']]
 banana_move = [0, -1043, -17410, 14, -3300, gripper['banana']]
-banana_place = [4600, -2400, -20410, -91, -400, gripper['open']]
+banana_place = [3000, -2400, -20410, -91, -400, gripper['open']]
 
 
-object_trajectories = {"apple": [upright, apple_pick, apple_move, apple_place, upright],
+object_trajectories = {"cup": [upright, cup_pick, cup_move, cup_place, upright],
                        "banana": [upright, banana_pick, banana_move, banana_place, upright]}
 
 

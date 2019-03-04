@@ -60,6 +60,18 @@ void setup() {
   joint4.setMaxSpeed(500);
   joint5.setMaxSpeed(1000);
 
+  pinMode(E1_ENABLE_PIN, OUTPUT);
+  digitalWrite(E1_ENABLE_PIN, LOW);
+
+  pinMode(Y_ENABLE_PIN, OUTPUT);
+  digitalWrite(Y_ENABLE_PIN, LOW);
+
+  pinMode(X_ENABLE_PIN, OUTPUT);
+  digitalWrite(X_ENABLE_PIN, LOW);
+
+  pinMode(E0_ENABLE_PIN, OUTPUT);
+  digitalWrite(E0_ENABLE_PIN, LOW);
+
   // Then give them to MultiStepper to manage
   steppers.addStepper(joint1);
   steppers.addStepper(joint2);
@@ -76,19 +88,19 @@ void loop() {
   positions[1] = 0; //2000 is 40/360 revolutions ---> 18000 microsteps/rev
   positions[2] = 0; //4000 is 20/360 revolutions ---> 72000 microsteps/rev
   positions[3] = 0; //820 is 1/4 revolution (200steps/revolution * 16microsteps/step (since microstepping) ~= 32800 microsteps/rev)
-  positions[4] = 0; //2000 is 50/360 revolution ---> 14400
+  positions[4] = -1800; //2000 is 50/360 revolution ---> 14400
   
   steppers.moveTo(positions);
   steppers.runSpeedToPosition(); // Blocks until all are in position
-  delay(1);
+  delay(500);
   
   // Move to a different coordinate
   positions[0] = 0;
   positions[1] = 0;
   positions[2] = 0;
   positions[3] = 0;
-  positions[4] = 0;
+  positions[4] = 1800;
   steppers.moveTo(positions);
   steppers.runSpeedToPosition(); // Blocks until all are in position
-  delay(1);
+  delay(500);
 }
