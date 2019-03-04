@@ -1,10 +1,10 @@
-# moveo_ros
-ROS packages that can be used to plan and execute motion trajectories for the BCN3D Moveo robotic arm in simulation and real-life.
-### [Video Demo Here!](https://youtu.be/2RcTTqs17O8)
+# rbx1-ros
+ROS packages that can be used to plan and execute motion trajectories for the Roboteurs RBX1 robotic arm in simulation and real-life.
+### [Video Demo Here!](https://youtu.be/bk7O4-ZAk6Q)
 
 - **_New Feature_: Object-Specific Pick and Place** (With an ordinary webcam, Tensorflow, OpenCV, and ROS, you can 'pick and place' (or sort) objects that are detected in real-time)
-	- **[Video Demo](https://youtu.be/kkUbyFa2MWc)**
-	- **[How to Use](https://github.com/jesseweisberg/moveo_ros/tree/master/moveo_moveit/scripts)**
+	- **[Video Demo](https://youtu.be/xdFcplHd1Gc)**
+	- **[How to Use](https://github.com/bmunkhtulga/rbx1-ros/tree/master/moveo_moveit/scripts)**
 
 
 
@@ -32,7 +32,7 @@ ROS packages that can be used to plan and execute motion trajectories for the BC
 6. In 'moveit_convert.cpp' replace the stepsPerRevolution array with the steps/revolution (or microsteps/revolution) of each of your motors.  (Note: if you don't already know these values, you can experimentally get how many microsteps/revolution your motors have using the MultiStepperTest.ino and recording/eyeballing the results)
 
 7. With the simulation already running, execute each of the following commands in it's own, separate terminal: 
-	- ``` rosrun rosserial_python serial_node.py /dev/ttyUSB0 ```(establishes rosserial node that communicates with Arduino)
+	- ``` rosrun rosserial_python serial_node.py /dev/ttyACM0 ```(establishes rosserial node that communicates with Arduino)
 	- ```rosrun moveo_moveit moveit_convert ``` (converts simulation joint_state rotations to steps and publishes on the /joint_steps topic, which the Arduino script subscribes to)
 	- ```rostopic pub gripper_angle std_msgs/UInt16 <angle 0-180> ```(publishes gripper_angle)
 
